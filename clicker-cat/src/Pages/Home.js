@@ -7,10 +7,11 @@ import "../Styles/CustomStyles.css"
 const Home = () => {
     const [searchparams] = useSearchParams();
 
-    if (searchparams.get("role") === "USER")
+    if (searchparams.get("role") === "ADMIN")
     {
         return(
             <div>
+                <a href="/admin" className="button is-link admin-button">Admin Console</a>
                 <section className="section">
                     <CatGenerator />
                 </section>
@@ -19,7 +20,6 @@ const Home = () => {
     } else {
         return(
             <div>
-                <a href="/admin" className="button is-link admin-button">Admin Console</a>
                 <section className="section">
                     <CatGenerator />
                 </section>
