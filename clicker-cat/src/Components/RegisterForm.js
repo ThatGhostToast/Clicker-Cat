@@ -6,47 +6,63 @@ import { useNavigate } from "react-router-dom";
 import dataSource from "../datasource.js";
 
 const RegisterForm = () => {
-
+  //Email from the user
   const [newEmail, setNewEmail] = useState('');
+  //Password from the user
   const [newPassword, setNewPassword] = useState('');
+  //Name from the user
   const [newName, setNewName] = useState('');
+  //Navigational tool 
   const navigate = useNavigate();
 
+  //Function to update the email variable
   const updateEmail = (event) => {
     setNewEmail(event.target.value);
   };
+  //Function to update the password variable
   const updatePassword = (event) => {
     setNewPassword(event.target.value);
   };
+  //Function to update the name variable
   const updateName = (event) => {
     setNewName(event.target.value);
   };
 
+  //Function to handle a form submission
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
+    //Log a successful submission
     console.log("submit");
+
+    //Create a user object
     const newUser = {
       email: newEmail,
       password: newPassword,
       name: newName,
     };
 
+    //Log the user data
     console.log(newUser);
 
+    //Call the api function
     saveUser(newUser);
   };
 
+  //Call to the API to save a user to the database
   const saveUser = async (user) => {
-    let response;
+    //Send the request and save the response
+    let response = await dataSource.post("/users", user);
 
-    response = await dataSource.post("/users", user);
-
+    //Log API response
     console.log(response);
     console.log(response.data);
+
+    //Navigate home
     navigate("/home");
   };  
 
+    //Returns the form
     return (
       <div className="container is-max-desktop">
         <section className="section logo-section">

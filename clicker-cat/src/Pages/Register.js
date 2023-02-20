@@ -3,6 +3,7 @@ import '../Styles/Bulma.css'
 import RegisterForm from "../Components/RegisterForm";
 
 const Register = () => {
+    //Return register form
     return(
         <div>
             <RegisterForm />

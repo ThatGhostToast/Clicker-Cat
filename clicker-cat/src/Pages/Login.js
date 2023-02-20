@@ -6,8 +6,10 @@ import { useSearchParams } from "react-router-dom";
 
 
 const Login = () => {
+    //Parameters used for navigation
     const [searchparams] = useSearchParams();
 
+    //If the user enters incorrect login information it will throw this form
     if (searchparams.get("id") === "fail"){
         return (
             <div>
@@ -15,6 +17,7 @@ const Login = () => {
             </div>
         );
     } else {
+        //Returns normal view
         return(
             <div>
                 <LoginForm />

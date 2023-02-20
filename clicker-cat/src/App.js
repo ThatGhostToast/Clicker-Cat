@@ -6,6 +6,7 @@ import Register from "./Pages/Register";
 import Admin from "./Pages/Admin";
 
 const App = () => {
+  //Routes for the application
   return (
     <Router>
       <Routes>

@@ -6,38 +6,52 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import dataSource from "../datasource.js";
 
 const LoginForm = () => {
+  //User email variable
   const [newEmail, setNewEmail] = useState('');
+  //User password variable
   const [newPassword, setNewPassword] = useState('');
+  //Navigational tool
   const navigate = useNavigate();
 
+  //Function to update the email variable
   const updateEmail = (event) => {
     setNewEmail(event.target.value);
   };
+  //Function to update the password variable
   const updatePassword = (event) => {
     setNewPassword(event.target.value);
   };
 
+  //Function to handle form submission
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
+    //Log the submission
     console.log("submit");
+    //Create a user object
     const User = {
       email: newEmail,
       password: newPassword,
     };
 
+    //Log the object
     console.log(User);
 
+    //Call the api function
     saveUser(User);
   };
 
+  //Function to call the api and login the user
   const saveUser = async (user) => {
-    let response;
+    //Call the api and save the response
+    let response = await dataSource.post("/users/login", user);
 
-    response = await dataSource.post("/users/login", user);
-
+    //Log the responses
     console.log(response);
     console.log(response.data);
+
+    //If the api returns with a status of 200 it was successful,
+    //else there was a problem so navigate back to the login form with a failure id
     if (response.status === 200)
     {
       navigate({
@@ -56,6 +70,7 @@ const LoginForm = () => {
     }
   };  
 
+    //Return the form
     return (
       <div className="container is-max-desktop">
         <section className="section logo-section">
